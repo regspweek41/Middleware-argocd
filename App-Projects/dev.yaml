@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  labels:
+    app: ProjectA
+  name: ProjectA
+  namespace: argo-cd
+spec:
+  description: This project contains DEV apps from ProjectA
+  destinations:
+  - name: '*'
+    namespace: '*'
+    server: 'https://kubernetes.default.svc'
+  sourceRepos:
+  - https://dev.azure.com/rkrvritN45PSP/RVRIT/_git/Middeleware-ArgoCD
