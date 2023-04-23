@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: analytics-api
+  namespace: argo-cd
+spec:
+  destination:
+    name: ''
+    namespace: ezrx
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm-charts/ezrx-backend/analytics-api
+    repoURL: >-
+      https://zuelligpharmadevops@dev.azure.com/zuelligpharmadevops/eZRx%20Backend/_git/eZRx-aks
+    targetRevision: non-prod
+    helm:
+      valueFiles:
+        - values_dev.yaml
+  project: ezrx
+  syncPolicy:
+    syncOptions:
+    - Replace=true
+    - PruneLast=true
+    automated:
+      prune: false
+      selfHeal: false
