@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc
+  labels:
+    {{- include "middleware-api.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.env.config.PORT }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "middleware-api.selectorLabels" . | nindent 4 }}

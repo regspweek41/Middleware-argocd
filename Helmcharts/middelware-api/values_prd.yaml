@@ -1,0 +1,107 @@
+replicaCount: 3
+
+image:
+  repository: ezrxcrprd.azurecr.io/ezrx-backend/analytics-api
+  pullPolicy: Always
+  tag: d3d0b5254bd78bfd09bd61f5c0f2d2f1c5486d6f
+
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  hosts:
+    host: analytics-api-prd.ezrx.com
+    path: /
+  tls:
+    enabled: true
+    secretName: ingress-tls
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1536Mi
+  requests:
+    cpu: 150m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 7
+  targetCPUUtilizationPercentage: 60
+  targetMemoryUtilizationPercentage: 60
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  config:
+    #HANA_HA: prod
+    #ROLES [username,salesorg,customer/shpldto,shipto]
+    APPLICATION_INSIGHTS_KEY: e5635cb9-21c9-47ab-8027-25bc706e031b
+    Client_Admin: "1111"
+    Client_User: "1111"
+    ENABLE_LOGGING: "false"
+    ENABLE_PUB_SUB: "true"
+    ERETURN_ENGINE_URL: http://ereturns-api-svc:8090/query
+    External_Sales_Rep: "0120"
+    HANA_HA_MAX_CONNECTION_LIFETIME: 2
+    HANA_HA_MAX_IDLE_CONNECTION: 2
+    HANA_HA_MAX_OPEN_CONNECTION: 30
+    HANA_HA_SCHEMA: ECP_RSP_HBP
+    HANA_MAX_CONNECTION_LIFETIME: 2
+    HANA_MAX_IDLE_CONNECTION: 2
+    HANA_MAX_OPEN_CONNECTION: 30
+    HANA_SCHEMA: ECP_RSP_BDP
+    Internal_Sales_Rep: "0120"
+    LICENSE_ENGINE_GRAPHQL: http://license-api-svc:8091/query
+    LOG_ENGINE_GRAPHQL: http://log-api-svc:8095/query
+    LOG_LEVEL: ERROR
+    MASK_ERROR: "true"
+    NATS_CONNECT_URL: nats://nats-api-svc:4222
+    ORDER_ENGINE_GRAPHQL: http://order-api-svc:8093/query
+    PORT: 8094
+    POSTGRES_DBNAME: citus
+    POSTGRES_HOST: 10.3.1.20
+    POSTGRES_MAX_CONNECTION_LIFETIME: 2
+    POSTGRES_MAX_IDLE_CONNECTION: 15
+    POSTGRES_MAX_OPEN_CONNECTION: 15
+    POSTGRES_PORT: 4432
+    POSTGRES_SSLMODE: disable
+    ROOT_Admin: "0000"
+    TZ: Asia/Singapore
+    ZP_Admin: "0100"
+  secret:
+    AUTH_TOKEN: dzl4cEFhQkRZUQ==
+    HANA_HA_URL: aGRiOi8vWlBfRVpSWDpaUF9lWlJ4MDEhQDEwLjEwLjEuMTA6MzQwNDE=
+    HANA_URL: aGRiOi8vWlBfRVpSWDI6WlBlWlJ4MiFAenBzZ2JkcGhhbmFkYi56dWVsbGlncGhhcm1hLmludGVycGhhcm1hLmxvY2FsOjMyNDE1
+    POSTGRES_PWD: WnVlbGxpZzAzIQ==
+    POSTGRES_USER: ZXpyeHByb2Q=
+    SECRET: NzliYTI4MzItOGE3YS00ZGU2LWE2ZjktMGViNzEzZGIzMTRk
