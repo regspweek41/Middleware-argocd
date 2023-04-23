@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    scheduler.alpha.kubernetes.io/node-selector: agentpool=agentpool
+    scheduler.alpha.kubernetes.io/defaultTolerations: '[{"operator": "Equal", "value": "true", "key": "CriticalAddonsOnly", "effect": "NoSchedule"}]'
+  labels:
+    kubernetes.io/metadata.name: argo-cd
+  name: argo-cd
+spec:
+  finalizers:
+  - kubernetes
