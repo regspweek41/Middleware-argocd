@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: middleware-api
+  namespace: argo-cd
+spec:
+  destination:
+    name: ''
+    namespace: middleware
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm-charts/ProjectA-backend/middleware-api
+    repoURL: >-
+      https://dev.azure.com/rkrvritN45PSP/RVRIT/_git/eZRx-aks
+    targetRevision: non-prod
+    helm:
+      valueFiles:
+        - values_dev.yaml
+  project: ProjectA
+  syncPolicy:
+    syncOptions:
+    - Replace=true
+    - PruneLast=true
+    automated:
+      prune: false
+      selfHeal: false
