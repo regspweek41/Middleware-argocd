@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: acr100thbatchproject.azurecr.io/ezrx-backend/middelware-api
   pullPolicy: Always
-  tag: dev-307db9b982e0b97047bad8279064a149b3427eb9
+  tag: dev-751899edd8de75bcfacba0af912e55825da0637a
 
 
 imagePullSecrets: []
