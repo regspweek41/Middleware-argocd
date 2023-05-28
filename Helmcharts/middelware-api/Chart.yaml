@@ -1,6 +1,6 @@
 apiVersion: v2
 name: middleware-api
-description: A Helm chart for middleware-api of eZRx Backend.
+description: A Helm chart for middleware-api of  Backend.
 
 # A chart can be either an 'application' or a 'library' chart.
 #
