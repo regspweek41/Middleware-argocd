@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "middleware-api.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "middleware-api.labels" . | nindent 4 }}
+    namespace: {{ .Release.Namespace }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
