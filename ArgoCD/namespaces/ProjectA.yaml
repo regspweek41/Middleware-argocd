@@ -6,7 +6,7 @@ metadata:
     scheduler.alpha.kubernetes.io/defaultTolerations: '[{"operator": "Equal", "value": "true", "key": "UserWorkload", "effect": "NoSchedule"}]'
   labels:
     kubernetes.io/metadata.name: ProjectA
-  name: ezrx
+  name: app-net
 spec:
   finalizers:
   - kubernetes
