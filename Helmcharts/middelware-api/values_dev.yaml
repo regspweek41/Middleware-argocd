@@ -97,7 +97,7 @@ env:
     TZ: Asia/Singapore
     ZP_Admin: "0100"
   secret:
-    ARDS_HOSTNAME: "mysqlserver100th.mysql.database.azure.com"
+    RDS_HOSTNAME: "mysqlserver100th.mysql.database.azure.com"
     RDS_PORT: "3306"
     RDS_DB_NAME: "todos"
     RDS_USERNAME: "zpadmin"
