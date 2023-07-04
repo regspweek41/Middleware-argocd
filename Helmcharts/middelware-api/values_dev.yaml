@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: acr201new.azurecr.io/middelware-api:dev-f6ca58ae2a83c12f32f05a6eb45845048f47e67e
+  repository: acr201new.azurecr.io/middelware-api
   pullPolicy: Always
   tag: dev-f6ca58ae2a83c12f32f05a6eb45845048f47e67e
 
