@@ -6,7 +6,7 @@ image:
   tag: dev-f6ca58ae2a83c12f32f05a6eb45845048f47e67e
 
 
-imagePullSecrets: []
+imagePullSecrets: [{ name: acr-secret }]
 nameOverride: ""
 fullnameOverride: ""
 
